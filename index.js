@@ -19,7 +19,7 @@ app.use((err, req, res, next) => {
 var server = app.listen(process.env.PORT || 8000, () =>
   console.log(
     "Express server listening on port %d in %s mode",
-    this.address().port,
+    server.address().port,
     app.settings.env
   )
 );
