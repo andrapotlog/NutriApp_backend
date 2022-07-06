@@ -4,7 +4,6 @@
   "description": "Optimizator personalizat de nutritie",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "start": "node index.js"
   },
   "keywords": [
