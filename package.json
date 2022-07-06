@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Optimizator personalizat de nutritie",
   "main": "index.js",
+  "web": "node index.js",
   "scripts": {
     "start": "node index.js"
   },
@@ -26,6 +27,7 @@
     "querystring": "^0.2.1"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.15.1",
+    "npm": "8.11.0"
   }
 }
