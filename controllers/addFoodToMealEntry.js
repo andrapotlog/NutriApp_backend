@@ -9,7 +9,6 @@ exports.addFoodToMealEntry = async (req, res, next) => {
     return res.status(422).json({ errors: errors.array() });
   }
   console.log("requestttt: ", req.body.params);
-
   try {
     if (req.body.params.id_meal === 0) {
       const [rows] = await conn.execute(

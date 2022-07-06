@@ -11,7 +11,8 @@ exports.registerUser = async (req, res, next) => {
   console.log("requestttt: ", req.body.params);
   try {
     const [rows] = await conn.execute(
-      "INSERT INTO users (id_user, email,first_name,last_name,created_at,gender,birthdate,height,weight,goal,diet,health,physical_activity, bmr, calories, diet_calories)" +
+      "INSERT INTO users (id_user, email,first_name,last_name,created_at,gender,birthdate," +
+        "height,weight,goal,diet,health,physical_activity, bmr, calories, diet_calories)" +
         "VALUES (?,?, ?, ?, NOW(), ?, ?, ?,?,?, 'empty', 'empty', ?, ?,?,?)",
       [
         req.body.params.id_user,
@@ -30,7 +31,23 @@ exports.registerUser = async (req, res, next) => {
       ]
     );
 
-    if (rows.affectedRows === 1) {
+    const [hRows] = await conn.execute(
+      "INSERT INTO userHistory (id_user, timestamp," +
+        "height,weight,goal,diet,health,physical_activity, bmr, calories, diet_calories)" +
+        "VALUES (?, NOW(), ?,?,?, 'empty', 'empty', ?, ?,?,?)",
+      [
+        req.body.params.id_user,
+        req.body.params.height,
+        req.body.params.weight,
+        req.body.params.goal,
+        req.body.params.physical_activity,
+        req.body.params.bmr,
+        req.body.params.calories,
+        req.body.params.diet_calories,
+      ]
+    );
+
+    if (rows.affectedRows === 1 && hRows.affectedRows === 1) {
       console.log("SUCCESFUL");
       return res.status(201).json({
         message: "The user has been successfully inserted.",

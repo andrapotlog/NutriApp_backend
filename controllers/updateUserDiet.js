@@ -9,12 +9,28 @@ exports.updateUserDiet = async (req, res, next) => {
   }
   console.log("requestttt: ", req.body.params);
   try {
-    const [row_update] = await conn.execute(
-      "UPDATE users SET `diet`=? WHERE `id_user`=?",
-      [req.body.params.diet, req.body.params.uid]
+    const [user] = await conn.execute(
+      "SELECT height, weight,goal, health, physical_activity, bmr, calories, diet_calories FROM userhistory where id_user = ?  ORDER BY TIMESTAMP desc",
+      [req.body.params.uid]
     );
 
-    if (row_update.affectedRows === 1) {
+    const [row_ins] = await conn.execute(
+      "INSERT INTO userhistory (id_user, timestamp, height, weight, goal, diet, health, physical_activity, bmr, calories, diet_calories) values (?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        req.body.params.uid,
+        user[0].height,
+        user[0].weight,
+        user[0].goal,
+        req.body.params.diet,
+        user[0].health,
+        user[0].physical_activity,
+        user[0].bmr,
+        user[0].calories,
+        user[0].diet_calories,
+      ]
+    );
+
+    if (row_ins.affectedRows === 1) {
       console.log("SUCCESFUL");
       return res.status(201).json({
         message: "The user has been successfully updated.",

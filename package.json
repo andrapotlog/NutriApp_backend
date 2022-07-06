@@ -4,18 +4,29 @@
   "description": "Optimizator personalizat de nutritie",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node index.js"
   },
+  "keywords": [
+    "heroku"
+  ],
   "author": "Andra Potlog",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-validator": "^6.14.1",
+    "jest": "^28.1.1",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "nodemon": "^2.0.18",
     "querystring": "^0.2.1"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
