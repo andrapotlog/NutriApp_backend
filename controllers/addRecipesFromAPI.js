@@ -14,23 +14,41 @@ exports.addRecipesFromAPI = async (req, res, next) => {
     "banana",
     "kale",
     "seaweed",
-    /* "garlic",
+    "garlic",
     "shellfish",
     "chicken",
     "potatoes",
+  ];
+
+  ingr2 = [
     "liver",
     "sardines",
     "blueberries",
-    "eggs",
+    "egg",
     "cocoa",
     "spinach",
     "fish",
-    "broccoli", */
+    "broccoli",
+    "avocado",
+    "vegetables",
+  ];
+
+  ingr3 = [
+    "peanuts",
+    "cheese",
+    "milk",
+    "yogurt",
+    "fruits",
+    "nuts",
+    "grains",
+    "banana",
+    "mango",
+    "strawberry",
   ];
 
   console.log("request for recipes", req.body.params);
   try {
-    ingr.forEach((ingredient) => {
+    ingr3.forEach((ingredient) => {
       const url =
         "https://api.edamam.com/api/recipes/v2?type=public&q=" +
         ingredient +
